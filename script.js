@@ -1,10 +1,8 @@
-// ---------- Dark / light toggle (remembers choice, otherwise follows device) ----------
 (function(){
   const root = document.documentElement;
   const btn = document.getElementById('themeToggle');
   if (!btn) return;
   const isDark = () => root.getAttribute('data-theme') === 'dark';
-  // Moon icon sa light mode, sun icon sa dark mode (CSS ang nagpapalit ng icon)
   function sync(){
     btn.setAttribute('aria-pressed', isDark());
     btn.setAttribute('aria-label', isDark() ? 'Switch to light mode' : 'Switch to dark mode');
@@ -18,10 +16,8 @@
   });
 })();
 
-// ---------- Project search + filters (projects.html) ----------
 const search = document.getElementById('search');
 const selects = document.querySelectorAll('.filters select');
-// Auto-add any category / technology / year / type found in the projects (so new projects show up in the filters)
 selects.forEach(sel => {
   const have = new Set([...sel.options].map(o => o.value || o.text));
   const found = [...document.querySelectorAll('.prow')].map(p => p.dataset[sel.dataset.key]).filter(Boolean);
@@ -43,7 +39,6 @@ function applyFilters(){
 if (search) search.addEventListener('input', applyFilters);
 selects.forEach(s => s.addEventListener('change', applyFilters));
 
-// ---------- Contact form: Send Message opens Gmail compose, already filled in (contact.html) ----------
 const form = document.getElementById('contactForm');
 if (form) {
   form.addEventListener('submit', e => {
@@ -57,12 +52,10 @@ if (form) {
       + '&su=' + encodeURIComponent(subject)
       + '&body=' + encodeURIComponent(body);
     const win = window.open(gmail, '_blank');
-    // Kung na-block ang popup, gamitin ang default email app
     if (!win) location.href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   });
 }
 
-// ---------- "View Details" popup (projects.html) ----------
 const dlg = document.getElementById('detailsModal');
 const box = dlg ? dlg.querySelector('.modal-box') : null;
 function closeModal(){ dlg.classList.remove('open'); dlg.setAttribute('aria-hidden','true'); }
@@ -78,7 +71,6 @@ document.querySelectorAll('[data-details]').forEach(b => b.addEventListener('cli
   document.getElementById('dMeta').textContent = row.querySelector('small').textContent;
   document.getElementById('dDesc').textContent = row.querySelector('.right p').textContent;
   document.getElementById('dTag').textContent = row.querySelector('.gimp').textContent;
-  // MM Logo: ipakita lahat ng logo versions (Badge, Vertical, Horizontal, Icon)
   const g = document.getElementById('dGallery'), big = document.getElementById('dImg');
   g.innerHTML = '';
   if (row.dataset.gallery) {
