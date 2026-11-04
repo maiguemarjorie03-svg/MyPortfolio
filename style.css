@@ -1,16 +1,16 @@
 /* ===== Marjorie Maigue Portfolio — matches Figma design ===== */
 :root{
-  --nav:#af6657;         /* navbar + footer */
-  --btn:#be7161;         /* buttons */
+  --nav:#af6657;          /* navbar + footer */
+  --btn:#be7161;          /* buttons */
   --bg:#faf6f5;
   --text:#000;
   --card:#fff;
   --line:#222;
-  --soft:#b98d8c;        /* GIMP tag text */
+  --soft:#b98d8c;         /* GIMP tag text */
   --search:#ece6f0;
-  --nav-text:#000;       /* text/icons on navbar + footer */
+  --nav-text:#000;        /* text/icons on navbar + footer */
   --nav-line:rgba(0,0,0,.35);
-  --on-btn:#000;         /* text on buttons */
+  --on-btn:#000;          /* text on buttons */
   --head:'DM Serif Display','Playfair Display',Georgia,serif;
   --body:'Gelasio','Libre Baskerville',Georgia,serif;
 }
@@ -51,9 +51,9 @@ nav .links a:hover,nav .links a.active{border-bottom-color:var(--nav-text)}
 .center-head .lead{margin-left:auto;margin-right:auto;max-width:none}
 
 /* ---------- BUTTONS ---------- */
-.btn{display:inline-block;background:var(--btn);color:var(--on-btn);font-family:Arial,Helvetica,sans-serif;font-size:.78rem;font-weight:600;text-decoration:none;border:0;border-radius:6px;padding:9px 22px;cursor:pointer;transition:filter .2s,transform .2s}
+.btn{display:inline-block;background:var(--btn);color:var(--on-btn);font-family:Arial,Helvetica,sans-serif;font-size:.78rem;font-weight:600;text-decoration:none;border:0;border-radius:6px;padding:9px 26px;cursor:pointer;transition:filter .2s,transform .2s}
 .btn:hover{filter:brightness(1.1);transform:translateY(-1px)}
-.btn-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:16px;align-items:center}
+.btn-row{display:flex;gap:22px;flex-wrap:wrap;margin-top:16px}
 
 /* ---------- HOME ---------- */
 .hero{display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;min-height:430px}
@@ -64,9 +64,8 @@ nav .links a:hover,nav .links a.active{border-bottom-color:var(--nav-text)}
 .photo{width:310px;height:310px;border-radius:50%;overflow:hidden;background:#fff;flex-shrink:0}
 .photo img{width:100%;height:100%;object-fit:cover}
 .home-projects h2{font-size:2.6rem;margin-bottom:34px}
-.cards3{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;text-align:center;justify-content:center}
-.cards3 > div{background:var(--card);padding:20px;border-radius:12px;border:1px solid var(--line);box-shadow:0 4px 6px rgba(0,0,0,0.02);display:flex;flex-direction:column;align-items:center}
-.cards3 .pimg{width:190px;height:190px;margin:0 auto 20px;border-radius:38px;overflow:hidden;background:#fff}
+.cards3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:26px;text-align:center}
+.cards3 .pimg{width:190px;height:190px;margin:0 auto 26px;border-radius:38px;overflow:hidden;background:#fff}
 .cards3 .pimg img{width:100%;height:100%;object-fit:cover}
 .cards3 h4{font-size:1.35rem;margin-bottom:8px}
 .cards3 small{display:block;font-weight:700;font-size:.8rem;margin-bottom:10px;font-family:var(--head)}
@@ -147,8 +146,22 @@ form h3{font-size:1.5rem}
 footer{background:var(--nav);height:84px;padding:0 9%;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
 footer p{font-size:1.25rem;letter-spacing:.5px;color:var(--nav-text)}
 
+/* Burger menu button (hidden on desktop, shown on phones) */
+.menu-toggle{display:none;place-items:center;width:38px;height:38px;flex-shrink:0;border-radius:50%;border:1px solid var(--nav-line);background:transparent;color:var(--nav-text);cursor:pointer}
+.menu-toggle svg{width:20px;height:20px}
+.menu-toggle .i-close{display:none}
+nav.open .menu-toggle .i-burger{display:none}
+nav.open .menu-toggle .i-close{display:block}
+
 @media(max-width:760px){
-  nav{height:auto;padding:12px 4%;flex-wrap:wrap}
+  nav{height:auto;min-height:72px;padding:12px 5%;flex-wrap:wrap;gap:10px}
+  nav .logo{order:0;margin-right:auto}
+  nav .theme-toggle{order:1}
+  .menu-toggle{display:grid;order:2}
+  nav .links{order:3;width:100%;display:none;flex-direction:column;flex-wrap:nowrap;justify-content:flex-start;gap:0;margin-top:4px;border-top:1px solid var(--nav-line)}
+  nav.open .links{display:flex}
+  nav .links a{padding:13px 4px;border-bottom:1px solid var(--nav-line);font-size:1.05rem}
+  nav .links a:hover,nav .links a.active{border-bottom-color:var(--nav-line);font-weight:700}
   .contact-grid{grid-template-columns:1fr}
   .contact-side{padding-top:0;order:2}
   .frow{flex-direction:column;align-items:flex-start;gap:6px}
